@@ -217,7 +217,7 @@ Template.userInfo.helpers({
 		return user && user.customFields && user.customFields.laboratory;
 	},
 
-	hasEmail() {
+	hasAcademicEmail() {
 		const user = Template.instance().user.get();
 		return user && user.customFields && user.customFields.email;
 	},
