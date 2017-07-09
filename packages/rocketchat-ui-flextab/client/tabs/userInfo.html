@@ -11,8 +11,19 @@
 					{{> avatar username=username}}
 				</div>
 				<div class="info">
-					<h3 title="{{name}}"><i class="status-{{status}}"></i> {{name}}</h3>
+					<h3 title="{{name}}"><i class="status-{{status}}"></i>{{#if hasTitle}} {{customFields.title}} {{/if}} {{name}}</h3>
 					<p class="secondary-font-color">@{{username}}</p>
+					{{#if hasPosition}} <p>{{customFields.position}}</p> {{/if}}
+					{{#if hasHostOrganization}}
+                        {{#if hasHostOrganizationUrl}}
+                        <p><a href="{{customFields.hostOrganization.url}}">{{customFields.hostOrganization.name}}</a></p>
+                        {{else}}
+                        <p>{{customFields.hostOrganization.name}}</p>
+                        {{/if}}
+                    {{/if}}
+					{{#if hasDepartment}} <p>{{customFields.department}}</p> {{/if}}
+					{{#if hasGroup}} <p>{{customFields.group}}</p> {{/if}}
+					{{#if hasLaboratory}} <p>{{customFields.laboratory}}</p> {{/if}}
 					<p class="secondary-font-color">
 						{{#each roleTags}}
 							<span class="role-tag" data-role="{{description}}">{{description}}</span>
@@ -110,6 +121,52 @@
 					<button class='button back'><span>{{_ "View_All"}} <i class='icon-angle-right'></i></span></button>
 				{{/if}}
 			</nav>
+            <div class="about clearfix scispace-credentials">
+                <div class="info">
+                {{#with user}}
+					{{#if hasResearchKeywords}}
+						<p>
+                            <b>Research:</b>
+                            {{#each keyword in customFields.researchKeywords}} <span class="tag-list"> {{keyword}} </span> {{/each}}
+						</p>
+					{{/if}}
+
+					{{#if hasResearchEquipment}}
+						<p>
+                            <b>Equipment:</b>
+                            {{#each equipment in customFields.researchEquipment}} <span class="tag-list"> {{equipment}} </span> {{/each}}
+						</p>
+					{{/if}}
+
+					{{#if hasSocialProfiles}}
+					    {{#if hasLinkedinProfile}}
+                            <a href="{{customFields.socialProfiles.linkedinUrl}}"><img src="images/scispace/linkedin.png" /></a>
+                        {{else}}
+                            <img src="images/scispace/linkedin.png" class="inactive-img" />
+                        {{/if}}
+
+                        {{#if hasExeterProfile}}
+                            <a href="{{customfields.socialProfiles.exeterUrl}}"><img src="images/scispace/exeter.png" /></a>
+                        {{else}}
+                            <img src="images/scispace/exeter.png" class="inactive-img" />
+                        {{/if}}
+
+                        {{#if hasAcademiaProfile}}
+                            <a href="{{customFields.socialProfiles.academiaUrl}}"><img src="images/scispace/academia.png" /></a>
+                        {{else}}
+                            <img src="images/scispace/academia.png" class="inactive-img" />
+                        {{/if}}
+
+                        {{#if hasResearchgateProfile}}
+                            <a href="{{customFields.socialProfiles.researchgateUrl}}"><img src="images/scispace/researchgate.png" /></a>
+                        {{else}}
+                            <img src="images/scispace/researchgate.png" class="inactive-img" />
+                        {{/if}}
+					{{/if}}
+
+				{{/with}}
+                </div>
+            </div>
 		{{/if}}
 	{{/if}}
 </template>

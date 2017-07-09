@@ -180,7 +180,82 @@ Template.userInfo.helpers({
 	isBlocker() {
 		const subscription = ChatSubscription.findOne({rid:Session.get('openedRoom'), 'u._id': Meteor.userId()}, { fields: { blocker: 1 } });
 		return subscription.blocker;
-	}
+	},
+
+	hasTitle() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.title;
+	},
+
+	hasPosition() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.position;
+	},
+
+	hasHostOrganization() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.hostOrganization;
+	},
+
+	hasHostOrganizationUrl() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.hostOrganization && user.customFields.hostOrganization.url;
+	},
+
+	hasDepartment() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.department;
+	},
+
+	hasGroup() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.group;
+	},
+
+	hasLaboratory() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.laboratory;
+	},
+
+	hasEmail() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.email;
+	},
+
+	hasResearchKeywords() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.researchKeywords;
+	},
+
+	hasResearchEquipment() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.researchEquipment;
+	},
+
+	hasSocialProfiles() {
+		const user = Template.instance().user.get();
+		return user && user.customFields && user.customFields.socialProfiles;
+	},
+
+    hasLinkedinProfile() {
+		const user = Template.instance().user.get();
+        return user && user.customFields && user.customFields.socialProfiles && user.customFields.socialProfiles.linkedinUrl;
+    },
+
+    hasExeterProfile() {
+		const user = Template.instance().user.get();
+        return user && user.customFields && user.customFields.socialProfiles && user.customFields.socialProfiles.exeterUrl;
+    },
+
+    hasAcademiaProfile() {
+		const user = Template.instance().user.get();
+        return user && user.customFields && user.customFields.socialProfiles && user.customFields.socialProfiles.academiaUrl;
+    },
+
+    hasResearchgateProfile() {
+		const user = Template.instance().user.get();
+        return user && user.customFields && user.customFields.socialProfiles && user.customFields.socialProfiles.researchgateUrl;
+    }
 });
 
 Template.userInfo.events({
